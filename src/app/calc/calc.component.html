@@ -2,19 +2,19 @@
 <section>
   <div class="calc"> 
     <h2>Numeros Primos</h2>
-    <p>coloque un rango entre 1 y 200</p>
+    <p>coloque un rango de numeros entre 1 y 200</p>
     <div>
-      <label>Inicio</label><input [(ngModel)]="num1" type="number">
-      <div *ngIf="!checkNumber(num1)">
-        <label style="background:red;color:white" [hidden]="!myPassword.errors.required">
+      <label>Inicio</label><input [(ngModel)]="form.inicial" type="number">
+      <div *ngIf="!checkNumber(form.inicial)">
+        <label style="background:red;color:white">
           Valor fuera de rango proporcione un numero entre 1 y 200
         </label>
       </div>
   
       <p></p>
-      <label>Fin</label><input [(ngModel)]="num2" type="number">
-      <div *ngIf="!checkNumber(num2)">
-        <label style="background:red;color:white" [hidden]="!myPassword.errors.required">
+      <label>Fin</label><input [(ngModel)]="form.final" type="number">
+      <div *ngIf="!checkNumber(form.final)">
+        <label style="background:red;color:white">
           Valor fuera de rango proporcione un numero entre 1 y 200
         </label>
       </div>
@@ -25,7 +25,7 @@
 </section>
 <div class="result" *ngIf="respuesta">
     <h2>Numeros primos</h2>
-    
+    <p>Ver consola del navegador para el Registro</p>
       <p *ngFor="let num of arrayPrimos" > {{num}} </p>
           </div>
     

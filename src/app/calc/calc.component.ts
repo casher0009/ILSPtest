@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { RegistroService } from "../registro.service";
 
 @Component({
   selector: "app-calc",
@@ -6,11 +7,13 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./calc.component.css"]
 })
 export class CalcComponent implements OnInit {
-  constructor() {}
-  num1;
-  num2;
   arrayPrimos = new Array();
-  respuesta = false
+  respuesta = false;
+  form: any = {};
+
+  constructor(private servicio: RegistroService) {}
+
+
   checkNumber(num) {
     if (num > 0 && num <= 200) {
       return true;
@@ -18,12 +21,12 @@ export class CalcComponent implements OnInit {
   }
 
   llenarMatriz() {
-    var primo;
-    var totalPrimos = 0;
+    let primo;
+    let totalPrimos = 0;
 
     for (
-      var i = Math.min(this.num1, this.num2);
-      i <= Math.max(this.num1, this.num2);
+      let i = Math.min(this.form.inicial, this.form.final);
+      i <= Math.max(this.form.inicial, this.form.final);
       i++
     ) {
       primo = 1;
@@ -32,7 +35,7 @@ export class CalcComponent implements OnInit {
         this.arrayPrimos[totalPrimos] = i;
         totalPrimos++;
       } else {
-        for (var j = 2; j < i; j++) {
+        for (let j = 2; j < i; j++) {
           if (i % j == 0) {
             primo = 0;
             break;
@@ -44,11 +47,20 @@ export class CalcComponent implements OnInit {
         }
       }
     }
-    this.respuesta=true
+    this.respuesta = true;
+    this.form.primos = this.arrayPrimos.length
+    console.log(this.form)
+
+    this.getregistro()
     alert(`Total de numeros primos = ${this.arrayPrimos.length}`);
   }
 
-  ngOnInit() {
-    new CalcComponent()
+  getregistro() {
+    this.servicio.createRegistro(this.form).subscribe(registro=>{
+      console.log(registro)
+    });
   }
+
+
+  ngOnInit() {}
 }
