@@ -1,0 +1,13 @@
+.calc{
+  background: grey;
+width: 500px;
+}
+section{
+  display: flex;
+  justify-content: center
+}
+
+
+ul{
+  width: 50px;
+}
