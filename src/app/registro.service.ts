@@ -10,8 +10,8 @@ export class RegistroService {
 
   constructor(private http: Http) { }
 
-  url = "http://localhost:3000/"
-  // url = '/'
+  // url = "http://localhost:3000/"
+  url = '/'
 
 
   createRegistro(obj) :Observable<String> {
